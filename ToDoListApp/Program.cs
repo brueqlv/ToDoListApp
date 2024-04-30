@@ -2,6 +2,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using ToDoListApp.Data;
 using ToDoListApp.Models.Validators;
+using ToDoListApp.Services;
 
 namespace ToDoListApp
 {
@@ -20,6 +21,8 @@ namespace ToDoListApp
 
                 options.UseSqlServer(connectionString);
             }, ServiceLifetime.Scoped);
+
+            builder.Services.AddScoped<IToDoListService, ToDoListService>();
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
