@@ -1,0 +1,22 @@
+﻿@model ToDoListApp.Models.ToDoItem
+
+<dl class="row">
+    <dt class="col-sm-2">
+        Title
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Title)
+    </dd>
+    <dt class="col-sm-2">
+        Description
+    </dt>
+    <dd class="col-sm-10">
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+    <dt class="col-sm-2">
+        Status
+    </dt>
+    <dd class="col-sm-10">
+        @(Model.IsCompleted ? "Completed" : "Not Completed")
+    </dd>
+</dl>

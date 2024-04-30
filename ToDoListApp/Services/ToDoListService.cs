@@ -6,21 +6,21 @@ namespace ToDoListApp.Services
 {
     public class ToDoListService(ToDoDbContext context) : IToDoListService
     {
-        public async Task AddItemsAsync(ToDoItem item)
+        public async Task AddItemsAsync(ToDoItem toDoItem)
         {
-            context.Add(item);
+            context.Add(toDoItem);
             await context.SaveChangesAsync();
         }
 
         public async Task DeleteItemAsync(int id)
         {
-            var item = await GetItemByIdAsync(id);
+            var toDoItem = await GetItemByIdAsync(id);
 
-            if (item != null)
+            if (toDoItem != null)
             {
                 context
                     .Set<ToDoItem>()
-                    .Remove(item);
+                    .Remove(toDoItem);
 
                 await context.SaveChangesAsync();
             }
@@ -49,11 +49,11 @@ namespace ToDoListApp.Services
                 .ToListAsync();
         }
 
-        public async Task UpdateItemAsync(ToDoItem item)
+        public async Task UpdateItemAsync(ToDoItem toDoItem)
         {
             context
                 .Set<ToDoItem>()
-                .Update(item);
+                .Update(toDoItem);
 
             await context.SaveChangesAsync();
         }
