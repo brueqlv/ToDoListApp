@@ -32,7 +32,7 @@ namespace ToDoListApp
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/ToDoItem/Error");
             }
             app.UseStaticFiles();
 
@@ -42,7 +42,7 @@ namespace ToDoListApp
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=ToDoItems}/{action=Index}/{id?}");
 
             app.Run();
         }
