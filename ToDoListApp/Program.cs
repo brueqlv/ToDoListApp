@@ -1,3 +1,8 @@
+using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
+using ToDoListApp.Data;
+using ToDoListApp.Models.Validators;
+
 namespace ToDoListApp
 {
     public class Program
@@ -5,6 +10,16 @@ namespace ToDoListApp
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddControllersWithViews()
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ToDoItemValidator>());
+
+            builder.Services.AddDbContext<ToDoDbContext>(options =>
+            {
+                var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+                options.UseSqlServer(connectionString);
+            }, ServiceLifetime.Scoped);
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
